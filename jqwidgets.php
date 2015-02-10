@@ -36,9 +36,20 @@ class QdJqwidgets
     {
         //Register script
         $count = 0;
+
         foreach($this->script_list as $item)
         {
+            if($item == '')
+            {
+                continue;
+            }
             wp_register_script($this->getScriptCode($count), plugins_url($this->qd_js_dir . $item, $this->_FILE_));
+            wp_enqueue_script($this->getScriptCode($count));
+            $count++;
+        }
+        //register plugin js
+        foreach($this->script_plugin_list as $item) {
+            wp_register_script($this->getScriptCode($count), plugins_url($this->qd_js_plugin_dir . $item, $this->_FILE_));
             wp_enqueue_script($this->getScriptCode($count));
             $count++;
         }
@@ -46,18 +57,20 @@ class QdJqwidgets
         wp_register_style( 'qd-style-name', plugins_url('jqwidgets/'.$this->qd_css_dir . 'jqx.base.css', $this->__FILE__) );
         wp_enqueue_style('qd-style-name');
     }
+    private $qd_js_plugin_dir = '/plugin/';
     private $for_admin = true;
     private $qd_js_dir = '/src/';
     private $qd_css_dir = '/src/styles/';
     private $namespace = 'qd_script_';
     private $_FILE_ = __FILE__;
+    private  $script_plugin_list = array("form2js.js");
     private $script_list = array(
         ""//0
     ,"jqx-all.js"//1
     , "jqxangular.js"//2
     , "jqxbulletchart.js"//3
     , "jqxbuttongroup.js"//4
-    , "jqxbuttons.js"//5
+
     , "jqxcalendar.js"//6
     , "jqxchart.core.js"//7
     , "jqxchart.js"//8
@@ -68,6 +81,10 @@ class QdJqwidgets
     , "jqxcore.js"//13
     , "jqxdata.export.js"//14
     , "jqxdata.js"//15
+    , "jqxbuttons.js"//5
+    , "jqxscrollbar.js"//55
+    , "jqxlistbox.js"//41
+
     , "jqxdatatable.js"//16
     , "jqxdatetimeinput.js"//17
     , "jqxdocking.js"//18
@@ -76,27 +93,30 @@ class QdJqwidgets
     , "jqxdraw.js"//21
     , "jqxdropdownbutton.js"//22
     , "jqxdropdownlist.js"//23
+    , "jqxmenu.js"//44
+
     , "jqxeditor.js"//24
     , "jqxexpander.js"//25
     , "jqxgauge.js"//26
     , "jqxgrid.aggregates.js"//27
     , "jqxgrid.columnsreorder.js"//28
-    , "jqxgrid.columnsresize.js"//29
+
     , "jqxgrid.edit.js"//30
     , "jqxgrid.export.js"//31
-    , "jqxgrid.filter.js"//32
-    , "jqxgrid.grouping.js"//33
     , "jqxgrid.js"//34
+    , "jqxgrid.columnsresize.js"//29
+    , "jqxgrid.filter.js"//32//order is strictly important
+    , "jqxgrid.grouping.js"//33
     , "jqxgrid.pager.js"//35
-    , "jqxgrid.selection.js"//36
     , "jqxgrid.sort.js"//37
+    , "jqxgrid.selection.js"//36
     , "jqxgrid.storage.js"//38
     , "jqxinput.js"//39
     , "jqxknockout.js"//40
-    , "jqxlistbox.js"//41
+
     , "jqxlistmenu.js"//42
     , "jqxmaskedinput.js"//43
-    , "jqxmenu.js"//44
+
     , "jqxnavigationbar.js"//45
     , "jqxnotification.js"//46
     , "jqxnumberinput.js"//47
@@ -107,7 +127,7 @@ class QdJqwidgets
     , "jqxrangeselector.js"//52
     , "jqxrating.js"//53
     , "jqxresponse.js"//54
-    , "jqxscrollbar.js"//55
+
     , "jqxscrollview.js"//56
     , "jqxslider.js"//57
     , "jqxsplitter.js"//58
