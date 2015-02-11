@@ -63,7 +63,7 @@ class QdJqwidgets
     private $qd_css_dir = '/src/styles/';
     private $namespace = 'qd_script_';
     private $_FILE_ = __FILE__;
-    private  $script_plugin_list = array("form2js.js");
+    private  $script_plugin_list = array("form2js.js","watch.js", "sugar.min.js", "jquerymy-1.1.0.js");
     private $script_list = array(
         ""//0
     ,"jqx-all.js"//1
