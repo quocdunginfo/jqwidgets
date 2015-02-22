@@ -15,56 +15,59 @@ Text Domain: qdJqwidgets
 
 class QdJqwidgets
 {
-    public function __construct($for_admin)
+    public function __construct()
     {
-        $this->for_admin = $for_admin;
-        if($this->for_admin)
+
+    }
+    private static function getScriptCode($count)
+    {
+        return QdJqwidgets::$namespace .((string)$count);
+    }
+    private static function boot($for_admin)
+    {
+        if($for_admin)
         {
-            add_action('admin_enqueue_scripts', array($this, 'registerResource'));
+            add_action('admin_enqueue_scripts', array('QdJqwidgets', 'registerResource'));
         }
         else
         {
-            add_action('wp_enqueue_scripts', array($this, 'registerResource'));
+            add_action('wp_enqueue_scripts', array('QdJqwidgets', 'registerResource'));
         }
-
     }
-    private  function getScriptCode($count)
+    public static function registerResource($for_admin)
     {
-        return $this->namespace.((string)$count);
-    }
-    public function registerResource()
-    {
+        QdJqwidgets::boot($for_admin);
         //Register script
         $count = 0;
 
-        foreach($this->script_list as $item)
+        foreach(QdJqwidgets::$script_list as $item)
         {
             if($item == '')
             {
                 continue;
             }
-            wp_register_script($this->getScriptCode($count), plugins_url($this->qd_js_dir . $item, $this->_FILE_));
-            wp_enqueue_script($this->getScriptCode($count));
+            wp_register_script(QdJqwidgets::getScriptCode($count), plugins_url(QdJqwidgets::$qd_js_dir . $item, QdJqwidgets::$_FILE_));
+            wp_enqueue_script(QdJqwidgets::getScriptCode($count));
             $count++;
         }
         //register plugin js
-        foreach($this->script_plugin_list as $item) {
-            wp_register_script($this->getScriptCode($count), plugins_url($this->qd_js_plugin_dir . $item, $this->_FILE_));
-            wp_enqueue_script($this->getScriptCode($count));
+        foreach(QdJqwidgets::$script_plugin_list as $item) {
+            wp_register_script(QdJqwidgets::getScriptCode($count), plugins_url(QdJqwidgets::$qd_js_plugin_dir . $item, QdJqwidgets::$_FILE_));
+            wp_enqueue_script(QdJqwidgets::getScriptCode($count));
             $count++;
         }
         //CSS
-        wp_register_style( 'qd-style-name', plugins_url('jqwidgets/'.$this->qd_css_dir . 'jqx.base.css', $this->__FILE__) );
+        wp_register_style( 'qd-style-name', plugins_url(QdJqwidgets::$qd_css_dir . 'jqx.base.css', __FILE__) );
         wp_enqueue_style('qd-style-name');
     }
-    private $qd_js_plugin_dir = '/plugin/';
-    private $for_admin = true;
-    private $qd_js_dir = '/src/';
-    private $qd_css_dir = '/src/styles/';
-    private $namespace = 'qd_script_';
-    private $_FILE_ = __FILE__;
-    private  $script_plugin_list = array("form2js.js","jquery.formautofill.js", "knockout-3.2.0.js"/*,"watch.js", "sugar.min.js", "jquerymy-1.1.0.js"*/);
-    private $script_list = array(
+    private static $qd_js_plugin_dir = '/plugin/';
+    //private static $for_admin = true;
+    private static $qd_js_dir = '/src/';
+    private static $qd_css_dir = '/src/styles/';
+    private static $namespace = 'qd_script_';
+    private static $_FILE_ = __FILE__;
+    private static  $script_plugin_list = array("form2js.js","jquery.formautofill.js", "knockout-3.2.0.js"/*,"watch.js", "sugar.min.js", "jquerymy-1.1.0.js"*/);
+    private static $script_list = array(
         ""//0
     ,"jqx-all.js"//1
     , "jqxangular.js"//2
@@ -146,4 +149,4 @@ class QdJqwidgets
     );
 }
 //init
-$ghfceeety67 = new QdJqwidgets(true);
+//$ghfceeety67 = new QdJqwidgets(true);
