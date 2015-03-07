@@ -23,23 +23,21 @@ class QdJqwidgets
     {
         return QdJqwidgets::$namespace .((string)$count);
     }
-    private static function boot($for_admin)
+    public static function registerResource($for_admin)
     {
         if($for_admin)
         {
-            add_action('admin_enqueue_scripts', array('QdJqwidgets', 'registerResource'));
+            add_action('admin_enqueue_scripts', array('QdJqwidgets', 'loadResourceAdmin'));
         }
         else
         {
-            add_action('wp_enqueue_scripts', array('QdJqwidgets', 'registerResource'));
+            add_action('wp_enqueue_scripts', array('QdJqwidgets', 'loadResourceAdmin'));
         }
     }
-    public static function registerResource($for_admin)
+    public static function loadResourceAdmin()
     {
-        QdJqwidgets::boot($for_admin);
         //Register script
         $count = 0;
-
         foreach(QdJqwidgets::$script_list as $item)
         {
             if($item == '')
@@ -50,12 +48,14 @@ class QdJqwidgets
             wp_enqueue_script(QdJqwidgets::getScriptCode($count));
             $count++;
         }
+
         //register plugin js
         foreach(QdJqwidgets::$script_plugin_list as $item) {
             wp_register_script(QdJqwidgets::getScriptCode($count), plugins_url(QdJqwidgets::$qd_js_plugin_dir . $item, QdJqwidgets::$_FILE_));
             wp_enqueue_script(QdJqwidgets::getScriptCode($count));
             $count++;
         }
+
         //CSS
         wp_register_style( 'qd-style-name', plugins_url(QdJqwidgets::$qd_css_dir . 'jqx.base.css', __FILE__) );
         wp_enqueue_style('qd-style-name');
@@ -148,5 +148,3 @@ class QdJqwidgets
 
     );
 }
-//init
-//$ghfceeety67 = new QdJqwidgets(true);
