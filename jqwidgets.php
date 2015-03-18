@@ -34,6 +34,11 @@ class QdJqwidgets
             add_action('wp_enqueue_scripts', array('QdJqwidgets', 'loadResourceAdmin'));
         }
     }
+    public static function loadJS($path, $front=true)
+    {
+        wp_register_script($path, plugins_url(QdJqwidgets::$qd_js_plugin_dir . $path, QdJqwidgets::$_FILE_));
+        wp_enqueue_script($path);
+    }
     public static function loadResourceAdmin()
     {
         //Register script
