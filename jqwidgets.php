@@ -79,7 +79,7 @@ class QdJqwidgets
     , "jqxbulletchart.js"//3
     , "jqxbuttongroup.js"//4
 
-    , "jqxcalendar.js"//6
+
     , "jqxchart.core.js"//7
     , "jqxchart.js"//8
     , "jqxchart.rangeselector.js"//9
@@ -93,8 +93,12 @@ class QdJqwidgets
     , "jqxscrollbar.js"//55
     , "jqxlistbox.js"//41
 
-    , "jqxdatatable.js"//16
     , "jqxdatetimeinput.js"//17
+    , "jqxcalendar.js"//6,
+    , "globalization/globalize.js"//6,
+
+    , "jqxdatatable.js"//16
+
     , "jqxdocking.js"//18
     , "jqxdockpanel.js"//19
     , "jqxdragdrop.js"//20
