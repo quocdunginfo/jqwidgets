@@ -64,6 +64,9 @@ class QdJqwidgets
         //CSS
         wp_register_style( 'qd-style-name', plugins_url(QdJqwidgets::$qd_css_dir . 'jqx.base.css', __FILE__) );
         wp_enqueue_style('qd-style-name');
+        //CSS
+        wp_register_style( 'qd-style-bootstrap', plugins_url(QdJqwidgets::$qd_js_plugin_dir . 'bootstrap/bootstrap.min.css', __FILE__) );
+        wp_enqueue_style('qd-style-bootstrap');
     }
     private static $qd_js_plugin_dir = '/plugin/';
     //private static $for_admin = true;
@@ -71,7 +74,7 @@ class QdJqwidgets
     private static $qd_css_dir = '/src/styles/';
     private static $namespace = 'qd_script_';
     private static $_FILE_ = __FILE__;
-    private static  $script_plugin_list = array("form2js.js","jquery.formautofill.js", "knockout-3.2.0.js"/*,"watch.js", "sugar.min.js", "jquerymy-1.1.0.js"*/);
+    private static  $script_plugin_list = array("form2js.js","jquery.formautofill.js", "knockout-3.2.0.js", "bootstrap/bootstrap.min.js"/*,"watch.js", "sugar.min.js", "jquerymy-1.1.0.js"*/);
     private static $script_list = array(
         ""//0
     ,"jqx-all.js"//1
