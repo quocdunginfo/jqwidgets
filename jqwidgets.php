@@ -19,10 +19,7 @@ class QdJqwidgets
     {
 
     }
-    private static function getScriptCode($count)
-    {
-        return QdJqwidgets::$namespace .((string)$count);
-    }
+    //use for Qdmvc plugin
     public static function registerResource($for_admin)
     {
         if($for_admin)
@@ -34,48 +31,79 @@ class QdJqwidgets
             add_action('wp_enqueue_scripts', array('QdJqwidgets', 'loadResourceAdmin'));
         }
     }
-    public static function loadJS($path, $front=true)
+    //use for Theme
+    public static function loadSinglePluginJS($path, $front=true)
     {
-        wp_register_script($path, plugins_url(QdJqwidgets::$qd_js_plugin_dir . $path, QdJqwidgets::$_FILE_));
+        wp_register_script($path, plugins_url(static::$plugin_dir . $path, static::$_FILE_));
         wp_enqueue_script($path);
     }
+    //use for WP hook callback
     public static function loadResourceAdmin()
     {
-        //Register script
+        /*Load js*/
+        //Load jqWidget js
         $count = 0;
-        foreach(QdJqwidgets::$script_list as $item)
+        foreach(QdJqwidgets::$list_js as $item)
         {
             if($item == '')
             {
                 continue;
             }
-            wp_register_script(QdJqwidgets::getScriptCode($count), plugins_url(QdJqwidgets::$qd_js_dir . $item, QdJqwidgets::$_FILE_));
-            wp_enqueue_script(QdJqwidgets::getScriptCode($count));
+            wp_register_script(static::$namespace_js .'_'.$count, plugins_url(static::$src_dir . $item, static::$_FILE_));
+            wp_enqueue_script(static::$namespace_js .'_'.$count);
+            $count++;
+        }
+        //Load plugin js
+        foreach(static::$plugin_list_js as $item) {
+            if($item == '')
+            {
+                continue;
+            }
+            wp_register_script(static::$namespace_js .'_'.$count, plugins_url(static::$plugin_dir . $item, static::$_FILE_));
+            wp_enqueue_script(static::$namespace_js .'_'.$count);
             $count++;
         }
 
-        //register plugin js
-        foreach(QdJqwidgets::$script_plugin_list as $item) {
-            wp_register_script(QdJqwidgets::getScriptCode($count), plugins_url(QdJqwidgets::$qd_js_plugin_dir . $item, QdJqwidgets::$_FILE_));
-            wp_enqueue_script(QdJqwidgets::getScriptCode($count));
+        /*Load CSS*/
+        //Load jqWidget CSS
+        foreach(static::$list_css as $item)
+        {
+            if($item == '')
+            {
+                continue;
+            }
+            wp_register_style( static::$namespace_css.'_'.$count, plugins_url(static::$src_css_dir . $item, static::$_FILE_) );
+            wp_enqueue_style( static::$namespace_css.'_'.$count );
             $count++;
         }
 
-        //CSS
-        wp_register_style( 'qd-style-name', plugins_url(QdJqwidgets::$qd_css_dir . 'jqx.base.css', __FILE__) );
-        wp_enqueue_style('qd-style-name');
-        //CSS
-        wp_register_style( 'qd-style-bootstrap', plugins_url(QdJqwidgets::$qd_js_plugin_dir . 'bootstrap/bootstrap.min.css', __FILE__) );
-        wp_enqueue_style('qd-style-bootstrap');
+        //Load plugin CSS
+        foreach(static::$plugin_list_css as $item)
+        {
+            if($item == '')
+            {
+                continue;
+            }
+            wp_register_style( static::$namespace_css.'_'.$count, plugins_url(static::$plugin_dir . $item, static::$_FILE_) );
+            wp_enqueue_style( static::$namespace_css.'_'.$count );
+            $count++;
+        }
     }
-    private static $qd_js_plugin_dir = '/plugin/';
-    //private static $for_admin = true;
-    private static $qd_js_dir = '/src/';
-    private static $qd_css_dir = '/src/styles/';
-    private static $namespace = 'qd_script_';
     private static $_FILE_ = __FILE__;
-    private static  $script_plugin_list = array("form2js.js","jquery.formautofill.js", "knockout-3.2.0.js", "bootstrap/bootstrap.min.js"/*,"watch.js", "sugar.min.js", "jquerymy-1.1.0.js"*/);
-    private static $script_list = array(
+
+    private static $plugin_dir = '/plugin/';
+    private static  $plugin_list_js = array("form2js.js","jquery.formautofill.js", "knockout-3.2.0.js", "bootstrap/bootstrap.min.js", 'intro.js/intro.min.js');
+    private static  $plugin_list_css = array('bootstrap/bootstrap.min.css', 'intro.js/introjs.min.css');
+
+    private static $src_dir = '/src/';
+    private static $src_css_dir = '/src/styles/';
+    private static $namespace_js = 'qd_js_';
+    private static $namespace_css = 'qd_css_';
+    //under $src_css_dir pre-path
+    private static $list_css = array(
+        'jqx.base.css'
+    );
+    private static $list_js = array(
         ""//0
     ,"jqx-all.js"//1
     , "jqxangular.js"//2
