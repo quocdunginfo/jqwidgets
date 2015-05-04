@@ -118,8 +118,7 @@ class QdJqwidgets
     , "jqxcolorpicker.js"//11
     , "jqxcombobox.js"//12
     , "jqxcore.js"//13
-    , "jqxdata.export.js"//14
-    , "jqxdata.js"//15
+
     , "jqxbuttons.js"//5
     , "jqxscrollbar.js"//55
     , "jqxlistbox.js"//41
@@ -144,10 +143,12 @@ class QdJqwidgets
     , "jqxgrid.aggregates.js"//27
     , "jqxgrid.columnsreorder.js"//28
 
-
-
     , "jqxgrid.js"//34
+
     , "jqxgrid.export.js"//31
+    , "jqxdata.js"//15
+    , "jqxdata.export.js"//14
+
     , "jqxgrid.edit.js"//30
     , "jqxgrid.columnsresize.js"//29
     , "jqxgrid.filter.js"//32//order is strictly important
