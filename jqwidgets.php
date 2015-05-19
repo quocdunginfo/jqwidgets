@@ -92,8 +92,18 @@ class QdJqwidgets
     private static $_FILE_ = __FILE__;
 
     private static $plugin_dir = '/plugin/';
-    private static  $plugin_list_js = array("form2js.js","jquery.formautofill.js", "knockout-3.2.0.js", "bootstrap/bootstrap.min.js", 'intro.js/intro.min.js');
-    private static  $plugin_list_css = array('bootstrap/bootstrap.min.css', 'intro.js/introjs.min.css');
+    private static  $plugin_list_js = array("form2js.js","jquery.formautofill.js", /*"knockout-3.2.0.js",*/ "bootstrap/bootstrap.min.js", /*'intro.js/intro.min.js',*/ 'colorpicker/jscolor.js',
+        //DatePicker
+        'datepicker/moment-with-locales.js',
+        'datepicker/bootstrap-datetimepicker.js'
+        //END DatePicker
+    );
+    private static  $plugin_list_css = array('bootstrap/bootstrap.min.css', 'intro.js/introjs.min.css',
+        //DatePicker
+        'datepicker/bootstrap-datetimepicker.css'
+        //END DatePicker
+    );
+
 
     private static $src_dir = '/src/';
     private static $src_css_dir = '/src/styles/';
@@ -118,8 +128,7 @@ class QdJqwidgets
     , "jqxcolorpicker.js"//11
     , "jqxcombobox.js"//12
     , "jqxcore.js"//13
-    , "jqxdata.export.js"//14
-    , "jqxdata.js"//15
+
     , "jqxbuttons.js"//5
     , "jqxscrollbar.js"//55
     , "jqxlistbox.js"//41
@@ -144,17 +153,22 @@ class QdJqwidgets
     , "jqxgrid.aggregates.js"//27
     , "jqxgrid.columnsreorder.js"//28
 
-
-
     , "jqxgrid.js"//34
-    , "jqxgrid.export.js"//31
+
     , "jqxgrid.edit.js"//30
     , "jqxgrid.columnsresize.js"//29
-    , "jqxgrid.filter.js"//32//order is strictly important
+
     , "jqxgrid.grouping.js"//33
     , "jqxgrid.pager.js"//35
     , "jqxgrid.sort.js"//37
     , "jqxgrid.selection.js"//36
+
+    , "jqxgrid.filter.js"//32//order is strictly important
+    , "jqxdata.js"//15
+
+    , "jqxgrid.export.js"//31
+    , "jqxdata.export.js"//14
+
     , "jqxgrid.storage.js"//38
     , "jqxinput.js"//39
     , "jqxknockout.js"//40
