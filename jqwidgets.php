@@ -40,19 +40,9 @@ class QdJqwidgets
     //use for WP hook callback
     public static function loadResourceAdmin()
     {
+
         /*Load js*/
-        //Load jqWidget js
         $count = 0;
-        foreach(QdJqwidgets::$list_js as $item)
-        {
-            if($item == '')
-            {
-                continue;
-            }
-            wp_register_script(static::$namespace_js .'_'.$count, plugins_url(static::$src_dir . $item, static::$_FILE_));
-            wp_enqueue_script(static::$namespace_js .'_'.$count);
-            $count++;
-        }
         //Load plugin js
         foreach(static::$plugin_list_js as $item) {
             if($item == '')
@@ -63,6 +53,20 @@ class QdJqwidgets
             wp_enqueue_script(static::$namespace_js .'_'.$count);
             $count++;
         }
+
+        //Load jqWidget js
+
+        foreach(QdJqwidgets::$list_js as $item)
+        {
+            if($item == '')
+            {
+                continue;
+            }
+            wp_register_script(static::$namespace_js .'_'.$count, plugins_url(static::$src_dir . $item, static::$_FILE_));
+            wp_enqueue_script(static::$namespace_js .'_'.$count);
+            $count++;
+        }
+
 
         /*Load CSS*/
         //Load jqWidget CSS
@@ -92,7 +96,7 @@ class QdJqwidgets
     private static $_FILE_ = __FILE__;
 
     private static $plugin_dir = '/plugin/';
-    private static  $plugin_list_js = array("form2js.js","jquery.formautofill.js", /*"knockout-3.2.0.js",*/ "bootstrap/bootstrap.min.js", /*'intro.js/intro.min.js',*/ 'colorpicker/jscolor.js',
+    private static  $plugin_list_js = array(/*"form2js.js","jquery.formautofill.js",*/ "knockout-3.2.0.js", "knockout.mapping-latest.js", "bootstrap/bootstrap.min.js", /*'intro.js/intro.min.js',*/ 'colorpicker/jscolor.js',
         //DatePicker
         'datepicker/moment-with-locales.js',
         'datepicker/bootstrap-datetimepicker.js'
