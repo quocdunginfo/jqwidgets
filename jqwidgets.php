@@ -106,7 +106,7 @@ class QdJqwidgets
         //END DatePicker
         //QR scanner
         'qr/qrcodelib.js',
-        'qr/webcodecamjquery.js'
+        //'qr/webcodecamjquery.js'
         //END QR Scanner
     );
     private static  $plugin_list_css = array('bootstrap/bootstrap.min.css', 'intro.js/introjs.min.css',
