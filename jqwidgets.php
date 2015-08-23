@@ -19,6 +19,9 @@ class QdJqwidgets
     {
 
     }
+    public static function getResourcePath($r_path=''){
+        return plugins_url( $r_path, __FILE__ );
+    }
     //use for Qdmvc plugin
     public static function registerResource($for_admin)
     {
@@ -99,8 +102,12 @@ class QdJqwidgets
     private static  $plugin_list_js = array(/*"form2js.js","jquery.formautofill.js",*/ "knockout-3.2.0.js", "knockout.mapping-latest.js", "bootstrap/bootstrap.min.js", /*'intro.js/intro.min.js',*/ 'colorpicker/jscolor.js',
         //DatePicker
         'datepicker/moment-with-locales.js',
-        'datepicker/bootstrap-datetimepicker.js'
+        'datepicker/bootstrap-datetimepicker.js',
         //END DatePicker
+        //QR scanner
+        'qr/qrcodelib.js',
+        'qr/webcodecamjquery.js'
+        //END QR Scanner
     );
     private static  $plugin_list_css = array('bootstrap/bootstrap.min.css', 'intro.js/introjs.min.css',
         //DatePicker
