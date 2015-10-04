@@ -40,6 +40,12 @@ class QdJqwidgets
         wp_register_script($path, plugins_url(static::$plugin_dir . $path, static::$_FILE_));
         wp_enqueue_script($path);
     }
+    //use for Theme
+    public static function loadSinglePluginCSS($path, $front=true)
+    {
+        wp_register_style($path, plugins_url(static::$plugin_dir . $path, static::$_FILE_));
+        wp_enqueue_style($path);
+    }
     //use for WP hook callback
     public static function loadResourceAdmin()
     {
