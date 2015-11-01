@@ -49,7 +49,6 @@ class QdJqwidgets
     //use for WP hook callback
     public static function loadResourceAdmin()
     {
-
         /*Load js*/
         $count = 0;
         //Load plugin js
@@ -133,6 +132,7 @@ class QdJqwidgets
     private static $list_js = array(
         ""//0
     ,"jqx-all.js"//1
+        /*
     , "jqxangular.js"//2
     , "jqxbulletchart.js"//3
     , "jqxbuttongroup.js"//4
@@ -216,6 +216,7 @@ class QdJqwidgets
     , "jqxtreemap.js"//65
     , "jqxvalidator.js"//66
     , "jqxwindow.js"//67
+        */
 
     );
 }
